@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:component-scan base-package="edu.uwsp.cis345, edu.uwsp.cis345.dao, edu.uwsp.cis345.model, edu.uwsp.cis345.service" />
+	
+	<bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<bean id="employeeService"
+		class="edu.uwsp.cis345.service.EmployeeServiceImpl">
+		<constructor-arg name="employeeDAO" ref="employeeDAO" />
+	</bean>
+
+	<bean id="employeeDAO" class="edu.uwsp.cis345.dao.EmployeeDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://cnmtsrv1:1433;databaseName=CIS345_01_DAVIS_G;integratedSecurity=true"/>
+	</bean>
+	
+	
+	
+</beans>
+
+
