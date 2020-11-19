@@ -1,0 +1,5 @@
+Viewable at https://cnmtsrv2.uwsp.edu/~gdavi667/Sprint2/login.php
+
+This web app will accept two users and have them answer or administer quiz questions.
+Users will need to be logged in to reach the home page and the quiz, otherwise they
+will be redirected to the login page.
